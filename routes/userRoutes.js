@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router()
 
 // Controladores de usuarios
-const userController = require('../controllers/userController')
+const userController = require('../controllers/userController.js')
 
 // Rutas para los usuarios
 router.post('/register', userController.registerUser)

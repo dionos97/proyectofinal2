@@ -4,7 +4,7 @@ const express = require('express')
 const router = express.Router()
 
 // Controladores de categorías
-const categoryController = require('../controllers/CategoryController')
+const categoryController = require('../controllers/CategoryController.js')
 
 // Rutas para las categorías
 router.post('/', categoryController.createCategory)

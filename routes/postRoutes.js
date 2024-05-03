@@ -4,7 +4,7 @@ const express = require('express')
 const router = express.Router()
 
 // Controladores de publicaciones
-const postController = require('../controllers/postController')
+const postController = require('../controllers/postController.js')
 
 // Rutas para las publicaciones
 router.post('/', postController.createPost)

@@ -4,7 +4,7 @@ const express = require('express')
 const router = express.Router()
 
 // Controladores de comentarios
-const commentController = require('../controllers/CommentController')
+const commentController = require('../controllers/CommentController.js')
 
 // Rutas para los comentarios
 router.post('/', commentController.createComment)
