@@ -1,6 +1,8 @@
 // app.js
+
 const express = require('express')
 const app = express()
+const swaggerDocs = require('./utils')
 
 // Middleware para manejar datos JSON
 app.use(express.json())
@@ -8,11 +10,17 @@ app.use(express.json())
 // Rutas
 const indexRoutes = require('./routes/index')
 const userRoutes = require('./routes/userRoutes')
-// Incluir las demás rutas aquí...
+const postRoutes = require('./routes/postRoutes')
+const categoryRoutes = require('./routes/categoryRoutes')
+const commentRoutes = require('./routes/commentRoutes')
 
+// Agrega la documentación de Swagger
 app.use('/', indexRoutes)
 app.use('/users', userRoutes)
-// Incluir las demás rutas aquí...
+app.use('/posts', postRoutes)
+app.use('/categories', categoryRoutes)
+app.use('/comments', commentRoutes)
+app.use('/', swaggerDocs)
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000
