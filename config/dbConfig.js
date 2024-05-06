@@ -1,14 +1,9 @@
 // config/dbConfig.js
-const { createConnection } = require('mysql2')
+const { Sequelize } = require('sequelize')
 
-const connection = createConnection({
+const sequelize = new Sequelize('proyectofinal2', 'root', '', {
   host: 'localhost',
-
-  user: 'root',
-
-  password: '',
-
-  database: 'proyectofinal2'
+  dialect: 'mysql'
 })
 
-module.exports = connection
+module.exports = sequelize

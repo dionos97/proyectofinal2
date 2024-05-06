@@ -1,6 +1,6 @@
 // models/Role.js
 const { DataTypes, Model } = require('sequelize')
-const db = require('../config/dbConfig')
+const sequelize = require('../config/dbConfig')
 
 class Role extends Model {}
 
@@ -15,7 +15,8 @@ Role.init({
     allowNull: false
   }
 }, {
-  sequelize: db,
+  sequelize,
   modelName: 'Role'
 })
+
 module.exports = Role
