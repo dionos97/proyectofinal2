@@ -1,7 +1,7 @@
 // models/User.js
-const { DataTypes, Model } = require('sequelize');
-const db = require('../config/dbConfig');
-const Role = require('./Role');
+const { DataTypes, Model } = require('sequelize')
+const db = require('../config/dbConfig')
+const Role = require('./Role')
 
 class User extends Model {}
 
@@ -22,8 +22,8 @@ User.init({
 }, {
   sequelize: db,
   modelName: 'User'
-});
+})
 
-User.belongsTo(Role, { foreignKey: 'roleId', as: 'role' });
+User.belongsTo(Role, { foreignKey: 'roleId', as: 'role' })
 
-module.exports = User;
+module.exports = User

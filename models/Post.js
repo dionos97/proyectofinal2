@@ -1,6 +1,6 @@
 // models/Post.js
-const { DataTypes, Model } = require('sequelize');
-const db = require('../config/dbConfig');
+const { DataTypes, Model } = require('sequelize')
+const db = require('../config/dbConfig')
 
 class Post extends Model {}
 
@@ -21,6 +21,6 @@ Post.init({
 }, {
   sequelize: db,
   modelName: 'Post'
-});
+})
 
-module.exports = Post;
+module.exports = Post
