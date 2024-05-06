@@ -1,42 +1,30 @@
 // models/User.js
-const db = require('../config/dbConfig').default
+const { DataTypes, Model } = require('sequelize')
+const db = require('../config/dbConfig')
+const Role = require('./Role')
 
-class UserMethods {
-  static createUser (data) {
-    return db.User.create(data)
-  }
+class User extends Model {}
 
-  static updateUser (userId, data) {
-    return db.User.update(data, { where: { user_id: userId } })
-  }
-
-  static deleteUser (userId) {
-    return db.User.destroy({ where: { user_id: userId } })
-  }
-
-  static getUserById (userId) {
-    return db.User.findOne({ where: { user_id: userId } })
-  }
-
-  static getAllUsers () {
-    return db.User.findAll()
-  }
-}
-
-const UserModel = db.define('User', {
+User.init({
   user_id: {
-    type: db.Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  title: {
-    type: db.Sequelize.STRING,
+  username: {
+    type: DataTypes.STRING,
     allowNull: false
   },
-  content: {
-    type: db.Sequelize.TEXT,
+  roleId: {
+    type: DataTypes.INTEGER,
     allowNull: false
   }
+}, {
+  sequelize: db,
+  modelName: 'User'
 })
 
-module.exports = { UserModel, UserMethods }
+// Definir la relación con el modelo de Role
+User.belongsTo(Role, { foreignKey: 'roleId', as: 'role' })
+
+module.exports = User

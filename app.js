@@ -1,8 +1,8 @@
-// app.js
+// //app.js
 
 const express = require('express')
 const app = express()
-const swaggerDocs = require('./utils')
+const swaggerDocs = require('./utils/swagger.js')
 
 // Middleware para manejar datos JSON
 app.use(express.json())

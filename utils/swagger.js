@@ -11,7 +11,7 @@ const options = {
     openapi: '3.0.0',
     info: {
       title: 'API de Blogging Interactiva',
-      version: '1.0.0',
+      version: '3.0.0',
       description: 'Documentación de la API de Blogging Interactiva'
     },
     servers: [

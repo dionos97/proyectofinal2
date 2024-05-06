@@ -3,7 +3,7 @@
 // Crear un nuevo usuario
 exports.registerUser = async (req, res, next) => {
   try {
-    // registrar un nuevo usuario
+    // Registrar un nuevo usuario
   } catch (error) {
     next(error)
   }
@@ -12,7 +12,7 @@ exports.registerUser = async (req, res, next) => {
 // Iniciar sesión de usuario
 exports.loginUser = async (req, res, next) => {
   try {
-    // iniciar sesión de usuario
+    // Iniciar sesión de usuario
   } catch (error) {
     next(error)
   }
@@ -21,7 +21,7 @@ exports.loginUser = async (req, res, next) => {
 // Obtener un usuario por su ID
 exports.getUserById = async (req, res, next) => {
   try {
-    // obtener un usuario por su ID
+    // Obtener un usuario por su ID
   } catch (error) {
     next(error)
   }
@@ -30,7 +30,7 @@ exports.getUserById = async (req, res, next) => {
 // Actualizar un usuario por su ID
 exports.updateUser = async (req, res, next) => {
   try {
-    // actualizar un usuario por su ID
+    // Actualizar un usuario por su ID
   } catch (error) {
     next(error)
   }
@@ -39,7 +39,7 @@ exports.updateUser = async (req, res, next) => {
 // Eliminar un usuario por su ID
 exports.deleteUser = async (req, res, next) => {
   try {
-    // eliminar un usuario por su ID
+    // Eliminar un usuario por su ID
   } catch (error) {
     next(error)
   }
