@@ -1,41 +1,20 @@
-// controllers/postController.js
+// controllers/PostController.js
+const Post = require('../models/Post');
 
 exports.createPost = async (req, res, next) => {
   try {
-    // Lógica para crear una nueva publicación
+    const post = await Post.create(req.body);
+    res.status(201).json(post);
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};
 
 exports.getAllPosts = async (req, res, next) => {
   try {
-    // Lógica para obtener todas las publicaciones
+    const posts = await Post.findAll();
+    res.json(posts);
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
-
-exports.getPostById = async (req, res, next) => {
-  try {
-    // Lógica para obtener una publicación por su ID
-  } catch (error) {
-    next(error)
-  }
-}
-
-exports.updatePost = async (req, res, next) => {
-  try {
-    // Lógica para actualizar una publicación
-  } catch (error) {
-    next(error)
-  }
-}
-
-exports.deletePost = async (req, res, next) => {
-  try {
-    // Lógica para eliminar una publicación
-  } catch (error) {
-    next(error)
-  }
-}
+};

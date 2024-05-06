@@ -1,41 +1,20 @@
 // controllers/CommentController.js
+const Comment = require('../models/Comment');
 
 exports.createComment = async (req, res, next) => {
   try {
-    // Lógica para crear un nuevo usuario
+    const comment = await Comment.create(req.body);
+    res.status(201).json(comment);
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};
 
 exports.getAllComments = async (req, res, next) => {
   try {
-    // Lógica para obtener todos los usuarios
+    const comments = await Comment.findAll();
+    res.json(comments);
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
-
-exports.getCommentById = async (req, res, next) => {
-  try {
-    // Lógica para obtener un usuario por su ID
-  } catch (error) {
-    next(error)
-  }
-}
-
-exports.updateCommentById = async (req, res, next) => {
-  try {
-    // Lógica para actualizar un usuario por su ID
-  } catch (error) {
-    next(error)
-  }
-}
-
-exports.deleteCommentById = async (req, res, next) => {
-  try {
-    // Lógica para eliminar un usuario por su ID
-  } catch (error) {
-    next(error)
-  }
-}
+};

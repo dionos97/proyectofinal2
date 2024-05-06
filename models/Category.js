@@ -1,42 +1,22 @@
-// models/category.js
-const db = require('../config/dbConfig').default
+// models/Category.js
+const { DataTypes, Model } = require('sequelize');
+const db = require('../config/dbConfig');
 
-class CategoryMethods {
-  static createUser (data) {
-    return db.Category.create(data)
-  }
+class Category extends Model {}
 
-  static updateUser (categoryId, data) {
-    return db.Category.update(data, { where: { user_id: categoryId } })
-  }
-
-  static deleteUser (categoryId) {
-    return db.Category.destroy({ where: { user_id: categoryId } })
-  }
-
-  static getUserById (categoryId) {
-    return db.Category.findOne({ where: { user_id: categoryId } })
-  }
-
-  static getAllcategory () {
-    return db.Category.findAll()
-  }
-}
-
-const CategoryModel = db.define('Category', {
-  user_id: {
-    type: db.Sequelize.INTEGER,
+Category.init({
+  id: {
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  title: {
-    type: db.Sequelize.STRING,
-    allowNull: false
-  },
-  content: {
-    type: db.Sequelize.TEXT,
+  name: {
+    type: DataTypes.STRING,
     allowNull: false
   }
-})
+}, {
+  sequelize: db,
+  modelName: 'Category'
+});
 
-module.exports = { CategoryModel, CategoryMethods }
+module.exports = Category;

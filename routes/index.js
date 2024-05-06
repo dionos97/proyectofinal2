@@ -1,16 +1,14 @@
 // routes/index.js
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
+const userRoutes = require('./userRoutes');
+const postRoutes = require('./postRoutes');
+const categoryRoutes = require('./categoryRoutes');
+const commentRoutes = require('./commentRoutes');
 
-// Ruta de inicio
-router.get('/', (req, res) => {
-  res.send('¡Bienvenido a la API de Blogging!')
-})
+router.use('/users', userRoutes);
+router.use('/posts', postRoutes);
+router.use('/categories', categoryRoutes);
+router.use('/comments', commentRoutes);
 
-// Rutas de otros recursos (usuarios, publicaciones, etc.)
-router.use('/users', require('./userRoutes'))
-router.use('/posts', require('./postRoutes'))
-router.use('/categories', require('./categoryRoutes'))
-router.use('/comments', require('./commentRoutes'))
-
-module.exports = router
+module.exports = router;

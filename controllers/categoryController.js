@@ -1,41 +1,20 @@
 // controllers/CategoryController.js
+const Category = require('../models/Category');
 
 exports.createCategory = async (req, res, next) => {
   try {
-    // Lógica para crear un nuevo usuario
+    const category = await Category.create(req.body);
+    res.status(201).json(category);
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};
 
-exports.getAllCategory = async (req, res, next) => {
+exports.getAllCategories = async (req, res, next) => {
   try {
-    // Lógica para obtener todos los usuarios
+    const categories = await Category.findAll();
+    res.json(categories);
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
-
-exports.getCategoryById = async (req, res, next) => {
-  try {
-    // Lógica para obtener un usuario por su ID
-  } catch (error) {
-    next(error)
-  }
-}
-
-exports.updateCategoryById = async (req, res, next) => {
-  try {
-    // Lógica para actualizar un usuario por su ID
-  } catch (error) {
-    next(error)
-  }
-}
-
-exports.deleteCategoryById = async (req, res, next) => {
-  try {
-    // Lógica para eliminar un usuario por su ID
-  } catch (error) {
-    next(error)
-  }
-}
+};

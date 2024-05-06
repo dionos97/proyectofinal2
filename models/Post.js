@@ -1,42 +1,26 @@
 // models/Post.js
-const db = require('../config/dbConfig').default
+const { DataTypes, Model } = require('sequelize');
+const db = require('../config/dbConfig');
 
-class PostMethods {
-  static createUser (data) {
-    return db.Post.create(data)
-  }
+class Post extends Model {}
 
-  static updateUser (postId, data) {
-    return db.Post.update(data, { where: { user_id: postId } })
-  }
-
-  static deleteUser (postId) {
-    return db.Post.destroy({ where: { user_id: postId } })
-  }
-
-  static getUserById (postId) {
-    return db.Post.findOne({ where: { user_id: postId } })
-  }
-
-  static getAllPost () {
-    return db.Post.findAll()
-  }
-}
-
-const PostModel = db.define('Post', {
-  user_id: {
-    type: db.Sequelize.INTEGER,
+Post.init({
+  id: {
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
   title: {
-    type: db.Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false
   },
   content: {
-    type: db.Sequelize.TEXT,
+    type: DataTypes.TEXT,
     allowNull: false
   }
-})
+}, {
+  sequelize: db,
+  modelName: 'Post'
+});
 
-module.exports = { PostModel, PostMethods }
+module.exports = Post;

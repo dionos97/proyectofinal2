@@ -1,141 +1,111 @@
-swagger: '2.0'
+// utils/swagger.yaml
+openapi: 3.0.0
 info:
+  title: API de Blogging Interactiva
   version: 1.0.0
-  title: Simple Artist API
-  description: A simple API to understand the Swagger Specification in greater detail
-schemes:
-  - https
-host: example.io
-basePath: /v1
-securityDefinitions:
-  UserSecurity:
-    type: basic
-security:
-  - UserSecurity: []
+  description: Documentación de la API de Blogging Interactiva
+
+servers:
+  - url: http://localhost:3000
+    description: Servidor local
+
 paths:
-  /artists:
+  /users:
     get:
-      description: Returns a list of artists
-      parameters:
-        - name: limit
-          in: query
-          type: integer
-          description: Limits the number of items on a page
-        - name: offset
-          in: query
-          type: integer
-          description: Specifies the page number of the artists to be displayed
+      summary: Obtener todos los usuarios
       responses:
-        200:
-          description: Successfully returned a list of artists
-          schema:
-            type: array
-            items:
-              type: object
-              required:
-                - username
-              properties:
-                artist_name:
-                  type: string
-                artist_genre:
-                  type: string
-                albums_recorded:
-                  type: integer
-                username:
-                  type: string
-        400:
-          description: Invalid request
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-    post:
-      description: Lets a user post a new artist
-      parameters:
-        - name: artist
-          in: body
-          description: creates a new artist in our database
-          schema:
-            type: object
-            required:
-              - username
-            properties:
-              artist_name:
-                type: string
-              artist_genre:
-                type: string
-              albums_recorded:
-                type: integer
-              username:
-                type: string
-      responses:
-        200:
-          description: Successfully created a new artist
-        400:
-          description: Invalid request
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-  /artists/{username}:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+  /posts:
     get:
-      description: Obtain information about an artist from his or her unique username
-      parameters:
-        - name: username
-          in: path
-          type: string
-          required: true
+      summary: Obtener todas las publicaciones
       responses:
-        200:
-          description: Successfully returned an artist
-          schema:
-            type: object
-            properties:
-              artist_name:
-                type: string
-              artist_genre:
-                type: string
-              albums_recorded:
-                type: integer
-        400:
-          description: Invalid request
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-definitions:
-  Artist:
-    type: object
-    required:
-      - username
-    properties:
-      artist_name:
-        type: string
-      artist_genre:
-        type: string
-      albums_recorded:
-        type: integer
-      username:
-        type: string
-parameters:
-  PageLimit:
-    name: limit
-    in: query
-    type: integer
-    description: Limits the number of items on a page
-  PageNumber:
-    name: offset
-    in: query
-    type: integer
-    description: Specifies the page number of the artists to be displayed
-responses:
-  400Error:
-    description: Invalid request
-    schema:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+
+  /categories:
+    get:
+      summary: Obtener todas las categorías
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+
+  /comments:
+    get:
+      summary: Obtener todos los comentarios
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+
+components:
+  schemas:
+    User:
       type: object
       properties:
-        message:
+        id:
+          type: integer
+        username:
           type: string
+        roleId:
+          type: integer
+      required:
+        - username
+        - roleId
+
+    Post:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+      required:
+        - title
+        - content
+
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      required:
+        - name
+
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+        content:
+          type: string
+      required:
+        - content

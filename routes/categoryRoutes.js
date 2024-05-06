@@ -1,16 +1,10 @@
 // routes/categoryRoutes.js
+const express = require('express');
+const router = express.Router();
+const categoryController = require('../controllers/CategoryController');
+const authMiddleware = require('../middleware/authMiddleware');
 
-const express = require('express')
-const router = express.Router()
+router.post('/', authMiddleware.authenticateUser, categoryController.createCategory);
+router.get('/', categoryController.getAllCategories);
 
-// Controladores de categorías
-const categoryController = require('../controllers/CategoryController.js')
-
-// Rutas para las categorías
-router.post('/', categoryController.createCategory)
-router.get('/', categoryController.getAllCategory)
-router.get('/:categoryId', categoryController.getCategoryById)
-router.put('/:categoryId', categoryController.updateCategoryById)
-router.delete('/:categoryId', categoryController.deleteCategoryById)
-
-module.exports = router
+module.exports = router;
