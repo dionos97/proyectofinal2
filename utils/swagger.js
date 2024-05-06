@@ -1,5 +1,3 @@
-// utils/swagger.js
-
 const express = require('express')
 const router = express.Router()
 const swaggerJsdoc = require('swagger-jsdoc')
@@ -11,7 +9,7 @@ const options = {
     openapi: '3.0.0',
     info: {
       title: 'API de Blogging Interactiva',
-      version: '3.0.0',
+      version: '1.0.0',
       description: 'Documentación de la API de Blogging Interactiva'
     },
     servers: [
@@ -21,12 +19,12 @@ const options = {
       }
     ]
   },
-  apis: ['./routes/index.js']
-}
+  apis: ['./routes/*.js'] // Cambia './routes/index.js' por './routes/*.js'
+};
 
 // Genera la documentación de Swagger
 const specs = swaggerJsdoc(options)
-router.use('/api-docs', swaggerUi.serve)
-router.get('/api-docs', swaggerUi.setup(specs))
+router.use('/', swaggerUi.serve); // Cambie '/api-docs' por '/'
+router.get('/', swaggerUi.setup(specs)) // Cambie '/api-docs' por '/'
 
-module.exports = router
+module.exports = router;
