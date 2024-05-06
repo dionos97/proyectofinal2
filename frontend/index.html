@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontend del Proyecto(en desarrollo)</title>
+  <link rel="stylesheet" href="index.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e1e;
+      color: #ffffff;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #00ccff;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #00ccff;
+      background-color: #333333;
+      color: #ffffff;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #ff9900;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bienvenido al Frontend del Proyecto</h1>
+    <form id="postForm">
+      <input type="text" class="form-input" placeholder="Título" required>
+      <textarea class="form-input" placeholder="Contenido" rows="4" required></textarea>
+      <button type="submit" class="button">Crear Publicación</button>
+    </form>
+    <div id="postList"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('postForm');
+    const postList = document.getElementById('postList');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const postData = {
+        title: formData.get('title'),
+        content: formData.get('content')
+      };
+
+      try {
+        const response = await fetch('/posts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(postData)
+        });
+
+        if (response.ok) {
+          const newPost = await response.json();
+          const postElement = document.createElement('div');
+          postElement.innerHTML = `
+            <h3>${newPost.title}</h3>
+            <p>${newPost.content}</p>
+          `;
+          postList.appendChild(postElement);
+        } else {
+          throw new Error('Error al crear la publicación');
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    });
+  </script>
+</body>
+</html>

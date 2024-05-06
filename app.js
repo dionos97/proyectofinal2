@@ -3,9 +3,10 @@ const express = require('express')
 const app = express()
 const swaggerUi = require('swagger-ui-express')
 const swaggerRouter = require('./utils/swagger')
-
+const path = require('path')
 app.use(express.json())
-
+// Servir el contenido estático del frontend
+app.use(express.static(path.join(__dirname, 'frontend')))
 // Rutas
 const indexRoutes = require('./routes')
 const userRoutes = require('./routes/userRoutes')
